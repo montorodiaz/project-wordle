@@ -53,3 +53,22 @@ export function checkGuess(guess, answer) {
 
   return result;
 }
+
+export const createGuess = function (letters) {
+  return {
+    id: window.crypto.randomUUID(),
+    letters: createLetters(letters),
+  };
+};
+
+export const createLetters = function (letters) {
+  return [...letters].map(([char]) => createLetter(char));
+};
+
+export const createLetter = function (char) {
+  return {
+    id: window.crypto.randomUUID(),
+    char: char,
+    status: '',
+  };
+};
