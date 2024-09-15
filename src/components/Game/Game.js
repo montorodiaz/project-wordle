@@ -11,8 +11,7 @@ import GuessResults from '../GuessResults';
 import WinBanner from '../WinBanner';
 import LostBanner from '../LostBanner';
 
-import { createGuess } from '../../game-helpers';
-import { checkGuess } from '../../game-helpers';
+import { createGuess, checkGuess } from '../../game-helpers';
 
 import { range } from '../../utils';
 
@@ -26,12 +25,12 @@ function Game() {
   const [statusGuess, setStatusGuess] = React.useState('running');
   const [tentatives, setTentatives] = React.useState(0);
   const [guesses, setGuesses] = React.useState(() => {
-    const emptyWord = Array(NUM_OF_LETTERS_ALLOWED)
+    const guessesEmpty = Array(NUM_OF_LETTERS_ALLOWED)
       .fill('_')
       .join('');
 
     return range(NUM_OF_GUESSES_ALLOWED).map(() =>
-      createGuess(emptyWord)
+      createGuess(guessesEmpty)
     );
   });
 
@@ -67,7 +66,6 @@ function Game() {
     }
 
     const newGuess = newGuesses[tentatives];
-    const nextTentative = tentatives + 1;
 
     checkedGuess.forEach(({ letter, status }, index) => {
       const newGuessLetter = newGuess.letters[index];
@@ -75,6 +73,7 @@ function Game() {
       newGuessLetter.status = status;
     });
 
+    const nextTentative = tentatives + 1;
     let nextStatusGuess = statusGuess;
 
     if (tentativeGuess.toUpperCase() === answer) {
