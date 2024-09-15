@@ -46,7 +46,7 @@ function GuessInput({ handleGuesses }) {
         size={NUM_OF_LETTERS_ALLOWED}
         maxLength={NUM_OF_LETTERS_ALLOWED}
         onChange={handleChangeInputGuess}
-        title='Introduce una palabra de cinco letras'
+        title={`Enter ${NUM_OF_LETTERS_ALLOWED} letters!!!`}
       />
     </form>
   );
